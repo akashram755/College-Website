@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Everstone Institute of Science and Technology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --royal-navy: #0A1628;
+      --royal-gold: #C99A2B;
+      --royal-gold-light: #E8B84B;
+      --royal-cream: #F8F2E7;
+      --royal-white: #FEFCF9;
+      --royal-gray: #5A6475;
+      --royal-shadow: 0 20px 50px rgba(10,22,40,0.20);
+      --radius: 24px;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--royal-white);
+      color: #1E293B;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    a { text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 5vw;
+    }
+    .section-padding {
+      padding: 90px 0;
+    }
+    .section-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--royal-gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      color: var(--royal-navy);
+      line-height: 1.1;
+    }
+    .section-title em {
+      color: var(--royal-gold);
+      font-style: normal;
+    }
+    .divider {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--royal-gold), var(--royal-gold-light));
+      border-radius: 4px;
+      margin: 16px 0 20px;
+    }
+    .section-sub {
+      color: var(--royal-gray);
+      font-size: 0.95rem;
+      max-width: 580px;
+      line-height: 1.8;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 36px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.02em;
+    }
+    .btn-gold {
+      background: var(--royal-gold);
+      color: var(--royal-white);
+      box-shadow: 0 10px 28px rgba(201,154,43,0.35);
+    }
+    .btn-gold:hover {
+      background: var(--royal-gold-light);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(201,154,43,0.45);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--royal-white);
+      border: 2px solid rgba(255,255,255,0.35);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--royal-gold);
+    }
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10,22,40,0.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(201,154,43,0.25);
+      padding: 0 5vw;
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .nav-logo {
+      height: 48px;
+      width: auto;
+      filter: brightness(1.1);
+    }
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      transition: 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .nav-links a:hover {
+      background: var(--royal-gold);
+      color: var(--royal-navy);
+    }
+    .nav-cta {
+      background: var(--royal-gold) !important;
+      color: var(--royal-navy) !important;
+      font-weight: 600;
+    }
+    .nav-cta:hover {
+      background: var(--royal-gold-light) !important;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      width: 26px;
+      height: 2.5px;
+      background: var(--royal-gold);
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        right: 0;
+        background: var(--royal-navy);
+        padding: 24px 5vw 32px;
+        border-bottom: 2px solid var(--royal-gold);
+        gap: 6px;
+      }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+    /* HERO */
+    .hero {
+      background: radial-gradient(circle at 30% 20%, #132a4a, var(--royal-navy) 80%);
+      position: relative;
+      overflow: hidden;
+      padding: 60px 0 90px;
+      border-bottom: 3px solid var(--royal-gold);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml;utf8,<svg width="70" height="70" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="1.8" fill="rgba(201,154,43,0.10)"/></svg>');
+      opacity: 0.5;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content h1 {
+      font-size: clamp(2.8rem, 6vw, 4.6rem);
+      color: white;
+      line-height: 1.05;
+    }
+    .hero-content h1 em {
+      color: var(--royal-gold-light);
+      font-style: normal;
+      text-shadow: 0 0 30px rgba(201,154,43,0.3);
+    }
+    .hero-sub {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.05rem;
+      margin: 20px 0 18px;
+      max-width: 520px;
+      font-weight: 300;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+    .hero-tag {
+      background: rgba(201,154,43,0.12);
+      border: 1px solid rgba(201,154,43,0.25);
+      padding: 6px 20px;
+      border-radius: 60px;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 36px;
+    }
+    .hero-stat strong {
+      display: block;
+      font-size: 2.6rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--royal-gold-light);
+      line-height: 1;
+    }
+    .hero-stat span {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+    }
+    .hero-card-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 340px;
+      margin-left: auto;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,154,43,0.2);
+      border-radius: 20px;
+      padding: 20px 28px;
+      color: white;
+      transition: 0.3s;
+    }
+    .hero-card:hover {
+      background: rgba(255,255,255,0.10);
+      transform: translateX(8px);
+      border-color: var(--royal-gold);
+    }
+    .hero-card .label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.6;
+    }
+    .hero-card .value {
+      font-size: 1.8rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--royal-gold-light);
+      font-weight: 700;
+    }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-card-stack { max-width: 100%; margin-left: 0; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+    }
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--royal-navy);
+      padding: 44px 0;
+      border-top: 2px solid rgba(201,154,43,0.3);
+      border-bottom: 2px solid rgba(201,154,43,0.3);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 20px;
+    }
+    .stat-item {
+      text-align: center;
+      color: white;
+    }
+    .stat-item .num {
+      font-size: 3rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--royal-gold-light);
+      font-weight: 700;
+      line-height: 1;
+    }
+    .stat-item .suffix { font-size: 1.8rem; color: var(--royal-gold); }
+    .stat-item .label { font-size: 0.8rem; opacity: 0.7; margin-top: 6px; font-weight: 300; letter-spacing: 0.06em; }
+    @media (max-width: 700px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-img-wrap { position: relative; }
+    .about-img-main {
+      border-radius: var(--radius);
+      box-shadow: var(--royal-shadow);
+      border: 2px solid var(--royal-gold);
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--royal-navy);
+      padding: 24px 32px;
+      border-radius: 20px;
+      color: white;
+      box-shadow: var(--royal-shadow);
+      text-align: center;
+      border: 1px solid var(--royal-gold);
+    }
+    .about-badge strong {
+      font-size: 2.4rem;
+      color: var(--royal-gold-light);
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .about-badge span { font-size: 0.75rem; opacity: 0.7; letter-spacing: 0.04em; }
+    .about-points { margin-top: 28px; display: flex; flex-direction: column; gap: 18px; }
+    .about-point {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .about-point-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(201,154,43,0.12);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+      border: 1px solid rgba(201,154,43,0.2);
+    }
+    .about-point-text strong { display: block; color: var(--royal-navy); font-weight: 600; font-size: 0.95rem; }
+    .about-point-text span { font-size: 0.83rem; color: var(--royal-gray); }
+    .badge-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 32px;
+    }
+    .badge-strip img { height: 48px; object-fit: contain; filter: grayscale(0.3); transition: 0.3s; }
+    .badge-strip img:hover { filter: grayscale(0); transform: scale(1.06); }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+    /* COURSES */
+    .courses { background: var(--royal-cream); }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 44px;
+    }
+    .filter-btn {
+      padding: 10px 26px;
+      border-radius: 60px;
+      border: 2px solid var(--royal-navy);
+      background: transparent;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.25s;
+      color: var(--royal-navy);
+      font-family: 'Inter', sans-serif;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--royal-navy);
+      color: var(--royal-white);
+      border-color: var(--royal-gold);
+    }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+      gap: 28px;
+    }
+    .course-card {
+      background: var(--royal-white);
+      border-radius: var(--radius);
+      padding: 30px 26px;
+      border: 1px solid #E2E8F0;
+      transition: 0.35s;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--royal-gold), var(--royal-gold-light));
+    }
+    .course-card:hover {
+      box-shadow: var(--royal-shadow);
+      transform: translateY(-8px);
+      border-color: var(--royal-gold);
+    }
+    .course-dept {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--royal-gold);
+      font-weight: 600;
+    }
+    .course-card h3 {
+      font-size: 1.2rem;
+      color: var(--royal-navy);
+      margin: 8px 0 10px;
+    }
+    .course-card p {
+      font-size: 0.85rem;
+      color: var(--royal-gray);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .course-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+    .course-pill {
+      background: var(--royal-cream);
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--royal-navy);
+    }
+    .course-card.hidden { display: none; }
+    /* ADMISSIONS */
+    .admissions { background: var(--royal-white); }
+    .fee-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      box-shadow: var(--royal-shadow);
+      margin-bottom: 44px;
+      border: 1px solid rgba(201,154,43,0.15);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+    thead { background: var(--royal-navy); }
+    th {
+      color: var(--royal-gold-light);
+      padding: 16px 20px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.78rem;
+      cursor: pointer;
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+    }
+    th:hover { background: rgba(201,154,43,0.15); }
+    td {
+      padding: 14px 20px;
+      font-size: 0.85rem;
+      border-bottom: 1px solid #F1F4F9;
+    }
+    tr:hover td { background: rgba(201,154,43,0.04); }
+    /* FACILITIES */
+    .facilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+      gap: 28px;
+    }
+    .facility-card {
+      background: var(--royal-white);
+      border-radius: var(--radius);
+      border: 1px solid #E2E8F0;
+      overflow: hidden;
+      transition: 0.35s;
+      text-align: center;
+      padding: 0 0 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+    .facility-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--royal-shadow);
+      border-color: var(--royal-gold);
+    }
+    .facility-img-wrap {
+      height: 150px;
+      overflow: hidden;
+    }
+    .facility-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+    .facility-card:hover .facility-photo { transform: scale(1.06); }
+    .facility-icon { font-size: 2.2rem; margin: 18px 0 8px; }
+    .facility-card h4 { font-size: 1.2rem; color: var(--royal-navy); }
+    .facility-card p { font-size: 0.8rem; color: var(--royal-gray); padding: 0 16px; line-height: 1.6; }
+    /* GALLERY */
+    .gallery { background: var(--royal-cream); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      grid-auto-rows: 200px;
+      gap: 16px;
+    }
+    .gallery-item {
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      background: #D1D9E6;
+      border: 2px solid transparent;
+      transition: 0.3s;
+    }
+    .gallery-item:hover { border-color: var(--royal-gold); }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gallery-item:nth-child(4) { grid-column: span 2; }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,22,40,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.35s;
+    }
+    .gallery-overlay span {
+      opacity: 0;
+      color: white;
+      font-size: 2.2rem;
+      background: rgba(201,154,43,0.2);
+      padding: 12px;
+      border-radius: 50%;
+    }
+    .gallery-item:hover .gallery-overlay { background: rgba(10,22,40,0.4); }
+    .gallery-item:hover .gallery-overlay span { opacity: 1; }
+    @media (max-width: 700px) {
+      .gallery-grid { grid-template-columns: repeat(2,1fr); grid-auto-rows: 140px; }
+      .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+      .gallery-item:nth-child(4) { grid-column: span 2; }
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,22,40,0.95);
+      z-index: 3000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 16px;
+      border: 2px solid var(--royal-gold);
+    }
+    .lb-close {
+      position: absolute;
+      top: 28px;
+      right: 32px;
+      color: white;
+      font-size: 2.2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(201,154,43,0.15);
+      color: white;
+      border: 1px solid rgba(201,154,43,0.3);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .lb-nav:hover { background: var(--royal-gold); color: var(--royal-navy); }
+    .lb-prev { left: 24px; }
+    .lb-next { right: 24px; }
+    /* RECRUITERS */
+    .recruiter-logos {
+      display: flex;
+      flex-wrap: wrap;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: white;
+    }
+    .recruiter-logo-wrap {
+      flex: 1 1 160px;
+      padding: 24px 16px;
+      border-right: 1px solid #E2E8F0;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.25s;
+    }
+    .recruiter-logo-wrap:hover { background: var(--royal-cream); }
+    .recruiter-logo-wrap img {
+      max-height: 38px;
+      max-width: 110px;
+      object-fit: contain;
+      filter: grayscale(0.5);
+      transition: 0.3s;
+    }
+    .recruiter-logo-wrap:hover img { filter: grayscale(0); }
+    .placement-highlight {
+      background: linear-gradient(145deg, var(--royal-navy), #162d4a);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 36px;
+      align-items: center;
+      justify-content: space-around;
+      margin-top: 48px;
+      border: 1px solid var(--royal-gold);
+    }
+    .placement-highlight div { text-align: center; color: white; }
+    .placement-highlight .big {
+      font-size: 2.6rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--royal-gold-light);
+      font-weight: 700;
+    }
+    .placement-highlight .label { font-size: 0.8rem; opacity: 0.6; letter-spacing: 0.04em; }
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 64px;
+    }
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .contact-item-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--royal-navy);
+      color: var(--royal-gold-light);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+      border: 1px solid rgba(201,154,43,0.2);
+    }
+    .contact-item h4 { font-size: 0.95rem; color: var(--royal-navy); }
+    .contact-item p { font-size: 0.85rem; color: var(--royal-gray); }
+    .map-box {
+      background: linear-gradient(145deg, var(--royal-navy), #1a2f4a);
+      border-radius: var(--radius);
+      padding: 36px 20px;
+      text-align: center;
+      color: white;
+      margin-top: 28px;
+      border: 1px solid var(--royal-gold);
+    }
+    .map-box a { color: var(--royal-gold-light); font-weight: 600; }
+    .contact-form { display: flex; flex-direction: column; gap: 18px; }
+    .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group input, .form-group textarea, .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid #D1D9E6;
+      border-radius: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      transition: 0.25s;
+      background: var(--royal-white);
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--royal-gold);
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(201,154,43,0.1);
+    }
+    .form-success { display: none; background: #D1FAE5; color: #065F46; padding: 14px 20px; border-radius: 16px; }
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row2 { grid-template-columns: 1fr; }
+    }
+    /* FOOTER */
+    footer {
+      background: var(--royal-navy);
+      color: rgba(255,255,255,0.8);
+      padding: 56px 5vw 28px;
+      border-top: 3px solid var(--royal-gold);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 36px;
+    }
+    .footer-brand h3 { color: white; font-size: 1.6rem; margin-bottom: 8px; }
+    .footer-brand p { font-size: 0.85rem; opacity: 0.7; max-width: 320px; line-height: 1.7; }
+    footer h4 {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--royal-gold);
+      margin-bottom: 16px;
+    }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 8px; }
+    footer ul a {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    footer ul a:hover { color: var(--royal-gold-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      opacity: 0.5;
+    }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; } }
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,22,40,0.7);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--royal-white);
+      border-radius: 28px;
+      padding: 44px;
+      max-width: 540px;
+      width: 90%;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+      animation: fadeUp 0.35s ease;
+      border: 1px solid var(--royal-gold);
+    }
+    .modal h3 { font-size: 1.8rem; color: var(--royal-navy); }
+    .modal-close {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: var(--royal-gray);
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { font-weight: 600; font-size: 0.8rem; color: var(--royal-navy); display: block; margin-bottom: 4px; }
+    #back-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 50px;
+      height: 50px;
+      background: var(--royal-gold);
+      color: var(--royal-navy);
+      border: none;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 8px 28px rgba(201,154,43,0.4);
+    }
+    #back-top.show { display: flex; align-items: center; justify-content: center; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-brand"><img src="collegenamemob.png" class="nav-logo" alt="PDKVCET"></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li><li><a href="#courses">Courses</a></li><li><a href="#facilities">Facilities</a></li><li><a href="#admissions">Admissions</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#recruiters">Recruiters</a></li><li><a href="#contact">Contact</a></li>
+      <li><a href="#admissions" class="nav-cta">Apply</a></li>
+    </ul>
+    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="section-tag" style="color:var(--royal-gold-light);">✦ Est. 2009 · Chennai</div>
+        <h1>Shaping Engineers for <em>Tomorrow's</em> World</h1>
+        <p class="hero-sub">Everstone Institute of Science and Technology — AICTE Approved, Anna University Affiliated, NAAC A+ Accredited.</p>
+        <div class="hero-tags">
+          <span class="hero-tag">🎓 B.E. / B.Tech</span><span class="hero-tag">🏆 NAAC A+</span>
+          <span class="hero-tag">💼 Top Placements</span><span class="hero-tag">18.9 Acre Campus</span>
+        </div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <a href="#admissions" class="btn btn-gold">Apply Now →</a>
+          <a href="#courses" class="btn btn-outline">Explore</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong class="counter" data-target="3500">0</strong><span>+ Students</span></div>
+          <div class="hero-stat"><strong class="counter" data-target="12">0</strong><span>+ Programs</span></div>
+          <div class="hero-stat"><strong class="counter" data-target="99">0</strong><span>% Placement</span></div>
+        </div>
+      </div>
+      <div class="hero-card-stack">
+        <div class="hero-card"><div class="label">NAAC Score</div><div class="value">3.4 / 4.0</div></div>
+        <div class="hero-card"><div class="label">ISO</div><div class="value">9001:2015</div></div>
+        <div class="hero-card"><div class="label">Campus</div><div class="value">18.9 Acres</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="container stats-grid">
+      <div class="stat-item"><div><span class="num counter" data-target="3500">0</span><span class="suffix">+</span></div><div class="label">Total Students</div></div>
+      <div class="stat-item"><div><span class="num counter" data-target="12">0</span><span class="suffix">+</span></div><div class="label">Courses</div></div>
+      <div class="stat-item"><div><span class="num counter" data-target="15">0</span><span class="suffix">+</span></div><div class="label">Years of Excellence</div></div>
+      <div class="stat-item"><div><span class="num counter" data-target="99">0</span><span class="suffix">%</span></div><div class="label">Placement Rate</div></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="container section-padding" id="about">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <img src="img4.jpg" class="about-img-main" alt="Campus">
+        <div class="about-badge"><strong>3.4</strong><span>NAAC Score / 4.0</span></div>
+      </div>
+      <div class="reveal">
+        <p class="section-tag">About Us</p>
+        <h2 class="section-title">A Legacy of <em>Engineering Excellence</em></h2>
+        <div class="divider"></div>
+        <p class="section-sub">Founded in 2009, EIST is a premier institution in Chennai, committed to academic rigor, research, and holistic development. Affiliated to Anna University and AICTE approved, with NAAC A+ accreditation.</p>
+        <div class="about-points">
+          <div class="about-point"><div class="about-point-icon">🏛️</div><div class="about-point-text"><strong>NAAC A+ Accredited</strong><span>Score of 3.4/4 in Cycle 1</span></div></div>
+          <div class="about-point"><div class="about-point-icon">🌿</div><div class="about-point-text"><strong>18.9 Acre Green Campus</strong><span>Eco-friendly environment for focused learning</span></div></div>
+          <div class="about-point"><div class="about-point-icon">🤝</div><div class="about-point-text"><strong>Student Welfare</strong><span>DWC, Anti-Ragging, POSH, Red Ribbon Club</span></div></div>
+          <div class="about-point"><div class="about-point-icon">📋</div><div class="about-point-text"><strong>ISO 9001:2015</strong><span>World-class quality management systems</span></div></div>
+        </div>
+        <div class="badge-strip">
+          <img src="dwc.png" alt="DWC"><img src="grc.png" alt="Grievance"><img src="posh.png" alt="POSH"><img src="red_ribbonclub.png" alt="Red Ribbon"><img src="yoth_red_cross.png" alt="Youth Red Cross">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="section-padding courses" id="courses">
+    <div class="container">
+      <div class="section-header reveal"><p class="section-tag">Academic Programs</p><h2 class="section-title">Courses <em>Offered</em></h2><div class="divider"></div><p class="section-sub">UG and PG programs across engineering disciplines, designed for industry demands.</p></div>
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="engineering">Engineering (UG)</button>
+        <button class="filter-btn" data-filter="technology">Technology (UG)</button>
+        <button class="filter-btn" data-filter="postgraduate">Postgraduate</button>
+        <button class="filter-btn" data-filter="lateral">Lateral Entry</button>
+      </div>
+      <div class="courses-grid" id="coursesGrid">
+        <div class="course-card visible" data-cat="engineering"><div class="course-dept">Engineering</div><h3>Computer Science & Engineering</h3><p>Algorithms, software engineering, data structures, systems design. Top recruiter demand.</p><div class="course-meta"><span class="course-pill">4 Years</span><span class="course-pill">B.E.</span><span class="course-pill">~₹2L Total</span></div></div>
+        <div class="course-card visible" data-cat="engineering"><div class="course-dept">Engineering</div><h3>Electronics & Communication</h3><p>Circuits, signal processing, embedded systems, wireless communications.</p><div class="course-meta"><span class="course-pill">4 Years</span><span class="course-pill">B.E.</span><span class="course-pill">~₹1.65L Total</span></div></div>
+        <div class="course-card visible" data-cat="engineering"><div class="course-dept">Engineering</div><h3>Mechanical Engineering</h3><p>Thermodynamics, manufacturing, robotics, product design — backbone of industry.</p><div class="course-meta"><span class="course-pill">4 Years</span><span class="course-pill">B.E.</span><span class="course-pill">~₹1.65L Total</span></div></div>
+        <div class="course-card visible" data-cat="engineering"><div class="course-dept">Engineering</div><h3>Electrical & Electronics</h3><p>Power systems, control theory, renewable energy, smart grid technologies.</p><div class="course-meta"><span class="course-pill">4 Years</span><span class="course-pill">B.E.</span><span class="course-pill">~₹1.65L Total</span></div></div>
+        <div class="course-card visible" data-cat="engineering"><div class="course-dept">Engineering</div><h3>Biomedical Engineering</h3><p>Medical devices, diagnostics, healthcare innovation — medicine meets technology.</p><div class="course-meta"><span class="course-pill">4 Years</span><span class="course-pill">B.E.</span><span class="course-pill">~₹1.65L Total</span></div></div>
+        <div class="course-card visible" data-cat="engineering"><div class="course-dept">Engineering</div><h3>Cyber Security (CSE)</h3><p>Network security, ethical hacking, cryptography, digital forensics.</p><div class="course-meta"><span class="course-pill">4 Years</span><span class="course-pill">B.E.</span><span class="course-pill">~₹2L Total</span></div></div>
+        <div class="course-card visible" data-cat="technology"><div class="course-dept">Technology</div><h3>Artificial Intelligence & Data Science</h3><p>Machine learning, deep learning, big data analytics — future of computing.</p><div class="course-meta"><span class="course-pill">4 Years</span><span class="course-pill">B.Tech</span><span class="course-pill">TBA</span></div></div>
+        <div class="course-card visible" data-cat="postgraduate"><div class="course-dept">Postgraduate</div><h3>M.E. Computer Science</h3><p>Advanced research in AI, systems, networks, software engineering.</p><div class="course-meta"><span class="course-pill">2 Years</span><span class="course-pill">M.E.</span><span class="course-pill">₹50K–1L</span></div></div>
+        <div class="course-card visible" data-cat="postgraduate"><div class="course-dept">Postgraduate</div><h3>M.E. Engineering Design</h3><p>Advanced product design, finite element analysis, manufacturing systems.</p><div class="course-meta"><span class="course-pill">2 Years</span><span class="course-pill">M.E.</span><span class="course-pill">₹50K–1L</span></div></div>
+        <div class="course-card visible" data-cat="lateral"><div class="course-dept">Lateral Entry</div><h3>Lateral Entry – CSE / ECE / EEE / Mech</h3><p>Direct second-year entry for diploma holders in relevant branches.</p><div class="course-meta"><span class="course-pill">3 Years</span><span class="course-pill">B.E.</span><span class="course-pill">Diploma Holders</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMISSIONS -->
+  <section class="container section-padding admissions" id="admissions">
+    <div class="section-header reveal"><p class="section-tag">Join Us</p><h2 class="section-title">Admissions & <em>Fee Structure</em></h2><div class="divider"></div><p class="section-sub">Admissions through TNEA (UG) and GATE/TANCET (PG). Click headers to sort.</p></div>
+    <div class="fee-table-wrap reveal">
+      <table id="feeTable">
+        <thead><tr><th onclick="sortTable(0)">Course ↕</th><th onclick="sortTable(1)">Type ↕</th><th onclick="sortTable(2)">Duration ↕</th><th onclick="sortTable(3)">Annual Fee ↕</th><th onclick="sortTable(4)">Seats ↕</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>Computer Science & Engineering</td><td>B.E.</td><td>4 Years</td><td>₹50,000</td><td>120</td><td><button class="btn btn-gold" style="padding:4px 18px;font-size:0.7rem;" onclick="openModal()">Apply</button></td></tr>
+          <tr><td>Electronics & Communication Engg</td><td>B.E.</td><td>4 Years</td><td>₹41,250</td><td>60</td><td><button class="btn btn-gold" style="padding:4px 18px;font-size:0.7rem;" onclick="openModal()">Apply</button></td></tr>
+          <tr><td>Mechanical Engineering</td><td>B.E.</td><td>4 Years</td><td>₹41,250</td><td>60</td><td><button class="btn btn-gold" style="padding:4px 18px;font-size:0.7rem;" onclick="openModal()">Apply</button></td></tr>
+          <tr><td>Electrical & Electronics Engg</td><td>B.E.</td><td>4 Years</td><td>₹41,250</td><td>60</td><td><button class="btn btn-gold" style="padding:4px 18px;font-size:0.7rem;" onclick="openModal()">Apply</button></td></tr>
+          <tr><td>Biomedical Engineering</td><td>B.E.</td><td>4 Years</td><td>₹41,250</td><td>60</td><td><button class="btn btn-gold" style="padding:4px 18px;font-size:0.7rem;" onclick="openModal()">Apply</button></td></tr>
+          <tr><td>Cyber Security (CSE)</td><td>B.E.</td><td>4 Years</td><td>₹50,000</td><td>60</td><td><button class="btn btn-gold" style="padding:4px 18px;font-size:0.7rem;" onclick="openModal()">Apply</button></td></tr>
+          <tr><td>AI & Data Science</td><td>B.Tech</td><td>4 Years</td><td>TBA</td><td>60</td><td><button class="btn btn-gold" style="padding:4px 18px;font-size:0.7rem;" onclick="openModal()">Apply</button></td></tr>
+          <tr><td>M.E. Computer Science & Engg</td><td>M.E.</td><td>2 Years</td><td>₹25K–₹50K</td><td>18</td><td><button class="btn btn-gold" style="padding:4px 18px;font-size:0.7rem;" onclick="openModal()">Apply</button></td></tr>
+          <tr><td>M.E. Engineering Design</td><td>M.E.</td><td>2 Years</td><td>₹25K–₹50K</td><td>18</td><td><button class="btn btn-gold" style="padding:4px 18px;font-size:0.7rem;" onclick="openModal()">Apply</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="reveal" style="background:var(--royal-cream);border-radius:var(--radius);padding:32px;max-width:600px;border:1px solid rgba(201,154,43,0.15);"><h3 style="font-size:1.3rem;color:var(--royal-navy);">Admission Process</h3><div style="display:flex;flex-direction:column;gap:10px;font-size:0.85rem;"><p><strong style="color:var(--royal-gold);">UG:</strong> Via TNEA counseling, 45–50% in +2.</p><p><strong style="color:var(--royal-gold);">PG:</strong> GATE / TANCET scores. Management quota available.</p><p><strong style="color:var(--royal-gold);">Lateral:</strong> Direct 2nd year entry for diploma holders.</p></div></div>
+  </section>
+
+  <!-- FACILITIES -->
+  <section class="container section-padding" id="facilities">
+    <div class="section-header reveal"><p class="section-tag">Campus Life</p><h2 class="section-title">World-Class <em>Facilities</em></h2><div class="divider"></div><p class="section-sub">18.9-acre campus with everything for learning, growth, and well-being.</p></div>
+    <div class="facilities-grid">
+      <div class="facility-card reveal facility-has-img"><div class="facility-img-wrap"><img src="Library1.jpg" class="facility-photo" alt="Library"></div><div class="facility-icon">📚</div><h4>Central Library</h4><p>Extensive books, journals, e-resources, quiet study zones.</p></div>
+      <div class="facility-card reveal facility-has-img"><div class="facility-img-wrap"><img src="computer lab.png" class="facility-photo" alt="Computer Lab"></div><div class="facility-icon">🖥️</div><h4>Computer Labs</h4><p>High-speed systems, latest software, 24×7 availability.</p></div>
+      <div class="facility-card reveal facility-has-img"><div class="facility-img-wrap"><img src="rese.png" class="facility-photo" alt="Research Lab"></div><div class="facility-icon">⚗️</div><h4>Research Labs</h4><p>State-of-the-art labs for Electronics, Mechanics, Biomedical, AI.</p></div>
+      <div class="facility-card reveal facility-has-img"><div class="facility-img-wrap"><img src="hostel.png" class="facility-photo" alt="Hostel"></div><div class="facility-icon">🏠</div><h4>Hostel</h4><p>Safe, comfortable on-campus hostel with 24×7 security.</p></div>
+      <div class="facility-card reveal facility-has-img"><div class="facility-img-wrap"><img src="cafe.png" class="facility-photo" alt="Cafeteria"></div><div class="facility-icon">🍽️</div><h4>Cafeteria</h4><p>Hygienic, affordable, nutritious meals.</p></div>
+      <div class="facility-card reveal facility-has-img"><div class="facility-img-wrap"><img src="wifi.png" class="facility-photo" alt="WiFi"></div><div class="facility-icon">📶</div><h4>Campus Wi-Fi</h4><p>High-speed connectivity across campus.</p></div>
+      <div class="facility-card reveal facility-has-img"><div class="facility-img-wrap"><img src="sports.png" class="facility-photo" alt="Sports"></div><div class="facility-icon">🏏</div><h4>Sports Ground</h4><p>Cricket, football, volleyball, athletics.</p></div>
+      <div class="facility-card reveal facility-has-img"><div class="facility-img-wrap"><img src="medical.png" class="facility-photo" alt="Medical"></div><div class="facility-icon">🏥</div><h4>Medical Assistance</h4><p>24×7 healthcare with qualified professionals.</p></div>
+      <div class="facility-card reveal facility-has-img"><div class="facility-img-wrap"><img src="audi.png" class="facility-photo" alt="Auditorium"></div><div class="facility-icon">🎭</div><h4>Auditorium</h4><p>Seminars, workshops, cultural events, conferences.</p></div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section-padding gallery" id="gallery">
+    <div class="container">
+      <div class="section-header reveal"><p class="section-tag">Campus Views</p><h2 class="section-title">Life at <em>EIST</em></h2><div class="divider"></div><p class="section-sub">A glimpse of our beautiful campus — where learning meets inspiration.</p></div>
+      <div class="gallery-grid reveal" id="galleryGrid">
+        <div class="gallery-item" data-index="0"><img src="img1.jpg" alt="Campus"><div class="gallery-overlay"><span>🔍</span></div></div>
+        <div class="gallery-item" data-index="1"><img src="img3.jpg" alt="Main Block"><div class="gallery-overlay"><span>🔍</span></div></div>
+        <div class="gallery-item" data-index="2"><img src="img5.jpg" alt="Academic Block"><div class="gallery-overlay"><span>🔍</span></div></div>
+        <div class="gallery-item" data-index="3"><img src="img4.jpg" alt="Campus View"><div class="gallery-overlay"><span>🔍</span></div></div>
+        <div class="gallery-item" data-index="4"><img src="img9.jpg" alt="Workshop"><div class="gallery-overlay"><span>🔍</span></div></div>
+        <div class="gallery-item" data-index="5"><img src="img6.jpg" alt="Greenery"><div class="gallery-overlay"><span>🔍</span></div></div>
+        <div class="gallery-item" data-index="6"><img src="img10.jpg" alt="Entrance"><div class="gallery-overlay"><span>🔍</span></div></div>
+        <div class="gallery-item" data-index="7"><img src="img8.jpg" alt="Aerial"><div class="gallery-overlay"><span>🔍</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox"><button class="lb-close" onclick="closeLightbox()">✕</button><button class="lb-nav lb-prev" onclick="lbNav(-1)">‹</button><img id="lbImg" src=""><button class="lb-nav lb-next" onclick="lbNav(1)">›</button></div>
+
+  <!-- RECRUITERS -->
+  <section class="container section-padding" id="recruiters">
+    <div class="section-header reveal"><p class="section-tag">Placements</p><h2 class="section-title">Our <em>Top Recruiters</em></h2><div class="divider"></div><p class="section-sub">Leading companies across IT, manufacturing, consulting recruit from campus. Packages ₹3–24 LPA.</p></div>
+    <div class="recruiter-logos reveal">
+      <div class="recruiter-logo-wrap"><img src="Amazon.png" alt="Amazon"></div><div class="recruiter-logo-wrap"><img src="Cognizant.png" alt="Cognizant"></div><div class="recruiter-logo-wrap"><img src="Zoho.png" alt="Zoho"></div><div class="recruiter-logo-wrap"><img src="HCL.png" alt="HCL"></div>
+      <div class="recruiter-logo-wrap"><img src="Aspire_Systems.png" alt="Aspire"></div><div class="recruiter-logo-wrap"><img src="Avasoft.png" alt="Avasoft"></div><div class="recruiter-logo-wrap"><img src="BPMLinks.png" alt="BPM"></div><div class="recruiter-logo-wrap"><img src="BYJUS.png" alt="BYJUS"></div>
+      <div class="recruiter-logo-wrap"><img src="DXC_Technology.png" alt="DXC"></div><div class="recruiter-logo-wrap"><img src="CEI.png" alt="CEI"></div><div class="recruiter-logo-wrap"><img src="CMS.png" alt="CMS"></div><div class="recruiter-logo-wrap"><img src="Infosys.png" alt="Infosys"></div>
+      <div class="recruiter-logo-wrap"><img src="Wipro.png" alt="Wipro"></div><div class="recruiter-logo-wrap"><img src="Emerson.png" alt="Emerson"></div><div class="recruiter-logo-wrap"><img src="Ideas2IT.png" alt="Ideas2IT"></div><div class="recruiter-logo-wrap"><img src="Flextronics.png" alt="Flextronics"></div>
+      <div class="recruiter-logo-wrap"><img src="Excelacom.png" alt="Excelacom"></div><div class="recruiter-logo-wrap"><img src="IBM.png" alt="IBM"></div><div class="recruiter-logo-wrap"><img src="FACE.png" alt="FACE"></div><div class="recruiter-logo-wrap"><img src="iLink_Digital.png" alt="iLink"></div>
+      <div class="recruiter-logo-wrap"><img src="Jasmin_Infotech.png" alt="Jasmin"></div><div class="recruiter-logo-wrap"><img src="Atos_Syntel.png" alt="Atos"></div><div class="recruiter-logo-wrap"><img src="Capgemini.png" alt="Capgemini"></div><div class="recruiter-logo-wrap"><img src="LTI.png" alt="LTI"></div>
+      <div class="recruiter-logo-wrap"><img src="Mitsogo.png" alt="Mitsogo"></div><div class="recruiter-logo-wrap"><img src="Mindtree.png" alt="Mindtree"></div><div class="recruiter-logo-wrap"><img src="NTT_Data.png" alt="NTT"></div><div class="recruiter-logo-wrap"><img src="Opex_Technologies.png" alt="Opex"></div>
+      <div class="recruiter-logo-wrap"><img src="Octoze.png" alt="Octoze"></div><div class="recruiter-logo-wrap"><img src="TeamLease.png" alt="TeamLease"></div><div class="recruiter-logo-wrap"><img src="ThinkInnov_Solution.png" alt="ThinkInnov"></div><div class="recruiter-logo-wrap"><img src="Mphasis.png" alt="Mphasis"></div>
+      <div class="recruiter-logo-wrap"><img src="Sensiple.png" alt="Sensiple"></div><div class="recruiter-logo-wrap"><img src="Sutherland.png" alt="Sutherland"></div><div class="recruiter-logo-wrap"><img src="Sanmina.png" alt="Sanmina"></div><div class="recruiter-logo-wrap"><img src="Syntel.png" alt="Syntel"></div>
+    </div>
+    <div class="placement-highlight reveal">
+      <div><div class="big">₹25 LPA</div><div class="label">Highest Package (2026)</div></div>
+      <div><div class="big">₹3–4 LPA</div><div class="label">Average Package</div></div>
+      <div><div class="big">50+</div><div class="label">Recruiting Companies</div></div>
+      <div><div class="big">99%</div><div class="label">Placement Rate</div></div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section class="container section-padding" id="contact">
+    <div class="section-header reveal"><p class="section-tag">Get in Touch</p><h2 class="section-title">Contact <em>Us</em></h2><div class="divider"></div></div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-item"><div class="contact-item-icon">📍</div><div><h4>Address</h4><p>Medavakkam-Mambakkam Road, Ponmar, Chennai – 600127</p></div></div>
+        <div class="contact-item"><div class="contact-item-icon">📞</div><div><h4>Phone</h4><p>044-27497075</p></div></div>
+        <div class="contact-item"><div class="contact-item-icon">✉️</div><div><h4>Email</h4><p>EIST@gmail.com</p></div></div>
+        <div class="contact-item"><div class="contact-item-icon">🌐</div><div><h4>Website</h4><p>www.EIST.in</p></div></div>
+        <div class="map-box"><span style="font-size:2.6rem;">📍</span><p style="margin:8px 0;">Ponmar, Chennai – 600127</p><a href="https://maps.google.com/?q=Prince+Dr+K+Vasudevan+College+of+Engineering+Technology+Ponmar+Chennai" target="_blank">Open in Google Maps →</a></div>
+      </div>
+      <div class="reveal">
+        <h3 style="font-size:1.5rem;color:var(--royal-navy);">Send a Message</h3><p style="color:var(--royal-gray);margin-bottom:20px;">We'd love to hear from you.</p>
+        <div class="form-success" id="contactSuccess">✅ Message sent! We'll reply within 24 hours.</div>
+        <div class="contact-form" id="contactForm">
+          <div class="form-row2"><div><input type="text" id="cName" placeholder="Full Name *"></div><div><input type="email" id="cEmail" placeholder="Email *"></div></div>
+          <input type="text" id="cSubject" placeholder="Subject *">
+          <textarea id="cMsg" rows="4" placeholder="Message *"></textarea>
+          <button class="btn btn-gold" onclick="submitContact()" style="width:fit-content;">Send →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><img src="collegenamemob.png" style="height:48px;object-fit:contain;margin-bottom:12px;filter:brightness(1.1);"><p>Everstone institute of science and technology — nurturing innovators since 2009.</p><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;"><span style="background:rgba(201,154,43,0.15);color:var(--royal-gold-light);padding:4px 14px;border-radius:40px;font-size:0.7rem;border:1px solid rgba(201,154,43,0.2);">AICTE</span><span style="background:rgba(201,154,43,0.15);color:var(--royal-gold-light);padding:4px 14px;border-radius:40px;font-size:0.7rem;border:1px solid rgba(201,154,43,0.2);">Anna University</span><span style="background:rgba(201,154,43,0.15);color:var(--royal-gold-light);padding:4px 14px;border-radius:40px;font-size:0.7rem;border:1px solid rgba(201,154,43,0.2);">NAAC A+</span><span style="background:rgba(201,154,43,0.15);color:var(--royal-gold-light);padding:4px 14px;border-radius:40px;font-size:0.7rem;border:1px solid rgba(201,154,43,0.2);">ISO 9001</span></div></div>
+        <div><h4>Quick Links</h4><ul><li><a href="#about">About</a></li><li><a href="#courses">Courses</a></li><li><a href="#admissions">Admissions</a></li><li><a href="#facilities">Facilities</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#contact">Contact</a></li></ul></div>
+        <div><h4>Programs</h4><ul><li><a href="#courses">B.E. CSE</a></li><li><a href="#courses">B.E. ECE</a></li><li><a href="#courses">B.E. Mechanical</a></li><li><a href="#courses">B.Tech AI & DS</a></li><li><a href="#courses">M.E. CSE</a></li><li><a href="#courses">M.E. Engg Design</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© 2025 Everstone Institute of Science and Technology. All Rights Reserved.</span><span>Ponmar, Chennai – 600127 | 044-27497075</span></div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="applyModal" onclick="if(event.target===this)closeModal()">
+    <div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><h3>Apply Now</h3><p>Fill in your details and we'll reach out.</p>
+      <div class="form-row2"><div class="form-group"><label>First Name *</label><input type="text" id="mFname"></div><div class="form-group"><label>Last Name *</label><input type="text" id="mLname"></div></div>
+      <div class="form-group"><label>Email *</label><input type="email" id="mEmail"></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" id="mPhone"></div>
+      <div class="form-group"><label>Program *</label><select id="mProgram"><option value="">Select</option><option>B.E. CSE</option><option>B.E. ECE</option><option>B.E. Mechanical</option><option>B.E. EEE</option><option>B.E. Biomedical</option><option>B.E. Cyber Security</option><option>B.Tech AI & DS</option><option>M.E. CSE</option><option>M.E. Engg Design</option><option>Lateral Entry</option></select></div>
+      <div id="mErr" style="color:#EF4444;font-size:0.75rem;display:none;">Please fill all fields.</div>
+      <div id="mSuccess" style="color:#065F46;background:#D1FAE5;padding:10px;border-radius:12px;display:none;">🎉 Application submitted!</div>
+      <button class="btn btn-gold" onclick="submitModal()" style="width:100%;justify-content:center;">Submit</button>
+    </div>
+  </div>
+
+  <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    emailjs.init({ publicKey: "666AHlxjkUGLmzTU-" });
+    const SERVICE_ID = "service_6pzn09j", TEMPLATE_ID = "template_contact";
+
+    // REVEAL
+    const obs = new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible')}}),{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+    // COUNTERS
+    const counterObs = new IntersectionObserver(e=>e.forEach(el=>{
+      if(el.isIntersecting){
+        const target=+el.target.dataset.target; let cur=0; const step=Math.ceil(target/70);
+        const t=setInterval(()=>{cur=Math.min(cur+step,target); el.target.textContent=cur.toLocaleString(); if(cur>=target) clearInterval(t);},20);
+        counterObs.unobserve(el.target);
+      }
+    }),{threshold:0.5});
+    document.querySelectorAll('.counter').forEach(el=>counterObs.observe(el));
+
+    // FILTER
+    document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',function(){
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active');
+      const f=this.dataset.filter;
+      document.querySelectorAll('.course-card').forEach(c=>{if(f==='all'||c.dataset.cat===f){c.classList.remove('hidden');c.classList.add('visible');}else{c.classList.add('hidden');c.classList.remove('visible');}});
+    }));
+
+    // TABLE SORT
+    let sortDir={};
+    function sortTable(col){
+      const tbody=document.querySelector('#feeTable tbody'), rows=Array.from(tbody.querySelectorAll('tr'));
+      sortDir[col]=!sortDir[col];
+      rows.sort((a,b)=>{ const av=a.cells[col].innerText.trim(), bv=b.cells[col].innerText.trim(); const an=parseFloat(av.replace(/[^0-9.]/g,'')), bn=parseFloat(bv.replace(/[^0-9.]/g,'')); if(!isNaN(an)&&!isNaN(bn)) return sortDir[col]?an-bn:bn-an; return sortDir[col]?av.localeCompare(bv):bv.localeCompare(av);});
+      rows.forEach(r=>tbody.appendChild(r));
+    }
+
+    // LIGHTBOX
+    const galleryImgs=Array.from(document.querySelectorAll('.gallery-item img')).map(i=>i.src); let lbIdx=0;
+    document.querySelectorAll('.gallery-item').forEach((item,i)=>{item.addEventListener('click',()=>{lbIdx=i; openLightbox(galleryImgs[i]);});});
+    function openLightbox(src){ document.getElementById('lbImg').src=src; document.getElementById('lightbox').classList.add('open');}
+    function closeLightbox(){ document.getElementById('lightbox').classList.remove('open');}
+    function lbNav(dir){ lbIdx=(lbIdx+dir+galleryImgs.length)%galleryImgs.length; openLightbox(galleryImgs[lbIdx]);}
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox(); if(e.key==='ArrowLeft')lbNav(-1); if(e.key==='ArrowRight')lbNav(1);});
+
+    // MODAL
+    function openModal(){ document.getElementById('applyModal').classList.add('open');}
+    function closeModal(){ document.getElementById('applyModal').classList.remove('open');}
+    function submitModal(){
+      const f=document.getElementById('mFname').value.trim(), l=document.getElementById('mLname').value.trim(), e=document.getElementById('mEmail').value.trim(), p=document.getElementById('mPhone').value.trim(), prog=document.getElementById('mProgram').value;
+      if(!f||!l||!e||!p||!prog){ document.getElementById('mErr').style.display='block'; return;}
+      emailjs.send(SERVICE_ID,TEMPLATE_ID,{form_type:"Course Application",name:f+" "+l,email:e,phone:p,course_name:prog,subject:"Admission Application",message:"Student applied through website"})
+      .then(()=>{ document.getElementById('mSuccess').style.display='block'; })
+      .catch(()=>alert('Failed to send.'));
+    }
+
+    // CONTACT
+    function submitContact(){
+      const n=document.getElementById('cName').value.trim(), e=document.getElementById('cEmail').value.trim(), s=document.getElementById('cSubject').value.trim(), m=document.getElementById('cMsg').value.trim();
+      if(!n||!e||!s||!m){ alert('Please fill all fields'); return;}
+      emailjs.send(SERVICE_ID,TEMPLATE_ID,{form_type:"Contact Form",name:n,email:e,subject:s,message:m})
+      .then(()=>{document.getElementById('contactForm').style.display='none'; document.getElementById('contactSuccess').style.display='block';})
+      .catch(()=>alert('Failed to send.'));
+    }
+
+    // BACK TO TOP
+    window.addEventListener('scroll',()=>{document.getElementById('back-top').classList.toggle('show',window.scrollY>400);});
+    // nav shadow
+    window.addEventListener('scroll',()=>{document.getElementById('navbar').style.boxShadow=window.scrollY>30?'0 4px 24px rgba(0,0,0,0.3)':'0 2px 12px rgba(0,0,0,0.1)';});
+  </script>
+</body>
+</html>
